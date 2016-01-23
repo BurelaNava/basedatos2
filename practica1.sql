@@ -16,3 +16,37 @@ edad:=years*365;
 dbms_output.put_line('Tu edad en días es: '||edad);
 end;
 /
+
+--Crear un PL SQL que genere 200,000 registros es secuencia ascendente en la tabla "dance".
+
+begin
+
+  for i in 1..200000 loop
+     insert into dance values(i,'Burela',26);
+  end loop;
+  
+  end;
+  /
+--Hacemos un "select * from dance" para comprobar que eb reakidad hizo los registros.
+select * from dance;
+
+--Sistema de películas(la de sala de tarea).
+
+create table pelicula(id_pelicula integer,
+                      titulo varchar2(120),
+                      sinopsis varchar2(500),
+                      clasificacion varchar2(5),
+                      constraint pk_id_pelicula primary key(id_pelicula));--por lo regular se pone en "constrain" el nombre de la tabla por la integridad de datos.
+                      
+create table horario(id_horario integer,
+                    id_pelicula integer,
+                    hora varchar2(8),
+                    constraint pk_id_horario primary key(id_horario),
+                    constraint fk1_id_pelicula foreign key(id_pelicula) references pelicula(id_pelicula));
+     
+create table sala(id_sala integer,
+                    id_pelicula integer,
+                    num_sala integer,
+                    constraint pk_id_sala primary key(id_sala),
+                    constraint fk2_id_pelicula foreign key(id_pelicula) references pelicula(id_pelicula));
+          
