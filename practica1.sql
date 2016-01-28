@@ -49,4 +49,14 @@ create table sala(id_sala integer,
                     num_sala integer,
                     constraint pk_id_sala primary key(id_sala),
                     constraint fk2_id_pelicula foreign key(id_pelicula) references pelicula(id_pelicula));
+                    
+                    create sequence sec_pelicula
+start with 1
+increment by 1
+nomaxvalue; 
+
+--El siguiente paso es ENLAZAR  la recién creado la secuencia con la tabla pelicula.
+--NOTA: S+olamente se necesita un nuevo objeto de base de datos, éste objeto va a ser
+--el que se insertará el o los nuevos registros en la tabla pelicula. En resumen:
+--JAMÁS se una un "insert into" en Oracle cuando tienen un primery key auto-generado.
           
