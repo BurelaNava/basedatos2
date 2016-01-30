@@ -31,7 +31,6 @@ begin
 select * from dance;
 
 --Sistema de películas(la de sala de tarea).
-
 create table pelicula(id_pelicula integer,
                       titulo varchar2(120),
                       sinopsis varchar2(500),
@@ -53,10 +52,39 @@ create table sala(id_sala integer,
                     create sequence sec_pelicula
 start with 1
 increment by 1
-nomaxvalue; 
+nomaxvalue;   
 
 --El siguiente paso es ENLAZAR  la recién creado la secuencia con la tabla pelicula.
 --NOTA: S+olamente se necesita un nuevo objeto de base de datos, éste objeto va a ser
 --el que se insertará el o los nuevos registros en la tabla pelicula. En resumen:
 --JAMÁS se una un "insert into" en Oracle cuando tienen un primery key auto-generado.
+
+set serveroutput on;
+create or replace procedure hola_mundo(nombre in varchar2)
+as
+begin
+
+--Aquí va la lógica.
+
+dbms_output.put_line('Hola, ¿cómo estás '||nombre);
+end;
+/
+
+  begin
+  hola_mundo('Burela?');
+  end;
+  /
+
+--"||"=Concatenación.
+
+declare 
+valor number;
+begin
+suma(12,8,valor);
+dbms_output.put_line('La suma es ' ||valor);
+end;
+/
+
+
+
           
